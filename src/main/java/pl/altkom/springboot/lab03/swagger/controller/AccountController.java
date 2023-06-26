@@ -2,8 +2,6 @@ package pl.altkom.springboot.lab03.swagger.controller;
 
 import java.util.List;
 
-import javax.validation.Valid;
-
 import org.springframework.http.HttpStatus;
 import org.springframework.http.MediaType;
 import org.springframework.web.bind.annotation.GetMapping;
@@ -19,7 +17,6 @@ import org.springframework.web.multipart.MultipartFile;
 
 import io.swagger.v3.oas.annotations.Operation;
 import io.swagger.v3.oas.annotations.responses.ApiResponse;
-import io.swagger.v3.oas.annotations.responses.ApiResponses;
 import io.swagger.v3.oas.annotations.tags.Tag;
 import lombok.RequiredArgsConstructor;
 import pl.altkom.springboot.lab03.swagger.controller.model.Account;
@@ -32,45 +29,40 @@ import pl.altkom.springboot.lab03.swagger.controller.model.UpdateAccountRequest;
 @RestController
 public class AccountController {
 
-    @ApiResponses({
+    @Operation(summary = "Get all accounts", responses = {
             @ApiResponse(responseCode = "200", description = "OK"),
             @ApiResponse(responseCode = "400", description = "Bad Request")
     })
-    @Operation(summary = "Get all accounts")
     @GetMapping
     public List<Account> getAccounts() {
         return List.of();
     }
 
-    @ApiResponses({
+    @Operation(summary = "Get account by id", responses = {
             @ApiResponse(responseCode = "200", description = "OK"),
             @ApiResponse(responseCode = "400", description = "Bad Request")
     })
-    @Operation(summary = "Get account by id")
     @GetMapping("/{id}")
     public Account getAccount(@PathVariable("id") final Long accountId) {
         return Account.builder().build();
     }
 
-    @ApiResponses({
+    @Operation(summary = "Create account", responses = {
             @ApiResponse(responseCode = "201", description = "Created"),
             @ApiResponse(responseCode = "400", description = "Bad Request")
     })
-
     @ResponseStatus(HttpStatus.CREATED)
-    @Operation(summary = "Create account")
     @PostMapping
-    public Long createAccount(@RequestBody @Valid final CreateAccountRequest request) {
+    public Long createAccount(@RequestBody final CreateAccountRequest request) {
         return null;
     }
 
-    @ApiResponses({
+    @Operation(summary = "Update account", responses = {
             @ApiResponse(responseCode = "200", description = "OK"),
             @ApiResponse(responseCode = "400", description = "Bad Request")
     })
-    @Operation(summary = "Update account")
     @PutMapping("/{id}")
-    public void updateAccount(@PathVariable("id") final Long accountId, @RequestBody @Valid final UpdateAccountRequest request) {
+    public void updateAccount(@PathVariable("id") final Long accountId, @RequestBody final UpdateAccountRequest request) {
 
     }
 

@@ -1,6 +1,6 @@
 package pl.altkom.springboot.lab03.swagger.controller.model;
 
-import javax.validation.constraints.NotNull;
+import jakarta.validation.constraints.NotNull;
 
 import lombok.Getter;
 
